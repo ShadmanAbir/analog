@@ -258,6 +258,15 @@ public class EnterpriseDbContext : DbContext
                   .HasConversion(
                       v => System.Text.Json.JsonSerializer.Serialize(v, (System.Text.Json.JsonSerializerOptions?)null),
                       v => System.Text.Json.JsonSerializer.Deserialize<List<SystemAlert>>(v, (System.Text.Json.JsonSerializerOptions?)null) ?? new List<SystemAlert>());
+
+            // Configure the Metrics property as owned entity
+            entity.OwnsOne(e => e.Metrics, metrics =>
+            {
+                metrics.Property(m => m.CustomMetrics)
+                       .HasConversion(
+                           v => v == null ? null : System.Text.Json.JsonSerializer.Serialize(v, (System.Text.Json.JsonSerializerOptions?)null),
+                           v => v == null ? null : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, double>>(v, (System.Text.Json.JsonSerializerOptions?)null));
+            });
         });
     }
 

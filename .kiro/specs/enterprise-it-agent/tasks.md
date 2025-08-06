@@ -129,11 +129,16 @@
 
 
 
-- [ ] 5. Create SQLite data access layer
+- [-] 5. Create SQLite data access layer
+
+
+
 
 
 
   - [ ] 5.1 Set up SQLite database with Entity Framework Core
+
+
 
 
 
