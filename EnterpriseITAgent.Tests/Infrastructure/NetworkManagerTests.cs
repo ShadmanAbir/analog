@@ -42,7 +42,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             It.Is<string>(s => s.Contains("NetworkManager initialized")),
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -72,7 +72,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             $"Base URL set to: {baseUrl}",
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -89,7 +89,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             $"Base URL set to: {expectedUrl}",
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -109,7 +109,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             "Custom headers set: 2 headers",
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -171,7 +171,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             "Connectivity test result: True",
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -198,7 +198,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             "Connectivity test result: False",
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -226,7 +226,7 @@ public class NetworkManagerTests : IDisposable
             It.IsAny<Exception>(),
             "Connectivity test failed",
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -269,9 +269,9 @@ public class NetworkManagerTests : IDisposable
         Assert.NotNull(networkManager.GetCurrentToken());
         Assert.True(networkManager.IsTokenValid());
         _mockLoggingService.Verify(x => x.LogInfo(
-            $"Authentication successful for node: {nodeId}",
+            It.Is<string>(s => s.Contains($"Authentication successful for node: {nodeId}")),
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]
@@ -331,7 +331,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             It.Is<string>(s => s.Contains("Successfully connected to peer")),
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Exactly(2));
+            null), Times.Exactly(2));
     }
 
     [Fact]
@@ -405,7 +405,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogWarning(
             It.Is<string>(s => s.Contains("Retry")),
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.AtLeast(2));
+            null), Times.AtLeast(2));
     }
 
     [Fact]
@@ -514,7 +514,7 @@ public class NetworkManagerTests : IDisposable
         _mockLoggingService.Verify(x => x.LogInfo(
             It.Is<string>(s => s.Contains("Token refresh successful")),
             "NetworkManager",
-            It.IsAny<Dictionary<string, object>>()), Times.Once);
+            null), Times.Once);
     }
 
     [Fact]

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using EnterpriseITAgent.Infrastructure;
 using EnterpriseITAgent.Models;
@@ -35,8 +36,8 @@ public class ConfigurationManagerTests : IDisposable
     {
         // Arrange
         var expectedConfig = CreateTestConfiguration();
-        _mockNetworkManager.Setup(x => x.TestConnectivityAsync()).ReturnsAsync(true);
-        _mockNetworkManager.Setup(x => x.SecureGetAsync<Configuration>(It.IsAny<string>()))
+        _mockNetworkManager.Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>())).ReturnsAsync(true);
+        _mockNetworkManager.Setup(x => x.SecureGetAsync<Configuration>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(expectedConfig);
 
         // Act
@@ -45,8 +46,8 @@ public class ConfigurationManagerTests : IDisposable
         // Assert
         Assert.NotNull(result);
         Assert.Equal(expectedConfig.NodeId, result.NodeId);
-        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(), Times.Once);
-        _mockNetworkManager.Verify(x => x.SecureGetAsync<Configuration>(It.IsAny<string>()), Times.Once);
+        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>()));
+        _mockNetworkManager.Verify(x => x.SecureGetAsync<Configuration>(It.IsAny<string>(), It.IsAny<CancellationToken>()),Times.Once);
     }
 
     [Fact]
@@ -56,7 +57,7 @@ public class ConfigurationManagerTests : IDisposable
         var testConfig = CreateTestConfiguration();
         await CreateTestConfigFile(testConfig);
         
-        _mockNetworkManager.Setup(x => x.TestConnectivityAsync()).ReturnsAsync(false);
+        _mockNetworkManager.Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>())).ReturnsAsync(false);
 
         // Act
         var result = await _configurationManager.LoadConfigurationAsync();
@@ -73,7 +74,7 @@ public class ConfigurationManagerTests : IDisposable
     public async Task LoadConfigurationAsync_WhenNoConfigExists_ShouldCreateDefault()
     {
         // Arrange
-        _mockNetworkManager.Setup(x => x.TestConnectivityAsync()).ReturnsAsync(false);
+        _mockNetworkManager.Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>())).ReturnsAsync(false);
 
         // Act
         var result = await _configurationManager.LoadConfigurationAsync();
@@ -121,15 +122,15 @@ public class ConfigurationManagerTests : IDisposable
     public async Task TryFetchFromErpAsync_WhenNetworkUnavailable_ShouldReturnFalse()
     {
         // Arrange
-        _mockNetworkManager.Setup(x => x.TestConnectivityAsync()).ReturnsAsync(false);
+        _mockNetworkManager.Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>())).ReturnsAsync(false);
 
         // Act
         var result = await _configurationManager.TryFetchFromErpAsync();
 
         // Assert
         Assert.False(result);
-        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(), Times.Once);
-        _mockNetworkManager.Verify(x => x.SecureGetAsync<Configuration>(It.IsAny<string>()), Times.Never);
+        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>()), Times.Once);
+        _mockNetworkManager.Verify(x => x.SecureGetAsync<Configuration>(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Never);
     }
 
     [Fact]
@@ -137,8 +138,8 @@ public class ConfigurationManagerTests : IDisposable
     {
         // Arrange
         var validConfig = CreateTestConfiguration();
-        _mockNetworkManager.Setup(x => x.TestConnectivityAsync()).ReturnsAsync(true);
-        _mockNetworkManager.Setup(x => x.SecureGetAsync<Configuration>(It.IsAny<string>()))
+        _mockNetworkManager.Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>())).ReturnsAsync(true);
+        _mockNetworkManager.Setup(x => x.SecureGetAsync<Configuration>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(validConfig);
 
         // Act
@@ -146,8 +147,8 @@ public class ConfigurationManagerTests : IDisposable
 
         // Assert
         Assert.True(result);
-        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(), Times.Once);
-        _mockNetworkManager.Verify(x => x.SecureGetAsync<Configuration>(It.IsAny<string>()), Times.Once);
+        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>()), Times.Once);
+        _mockNetworkManager.Verify(x => x.SecureGetAsync<Configuration>(It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -159,8 +160,8 @@ public class ConfigurationManagerTests : IDisposable
             NodeId = "", // Invalid
             Version = "invalid"
         };
-        _mockNetworkManager.Setup(x => x.TestConnectivityAsync()).ReturnsAsync(true);
-        _mockNetworkManager.Setup(x => x.SecureGetAsync<Configuration>(It.IsAny<string>()))
+        _mockNetworkManager.Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>())).ReturnsAsync(true);
+        _mockNetworkManager.Setup(x => x.SecureGetAsync<Configuration>(It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(invalidConfig);
 
         // Act

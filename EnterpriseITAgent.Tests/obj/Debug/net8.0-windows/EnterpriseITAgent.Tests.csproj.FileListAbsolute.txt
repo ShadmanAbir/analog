@@ -133,14 +133,3 @@ E:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgen
 E:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\ref\EnterpriseITAgent.Tests.dll
 E:\Repo\analog\EnterpriseITAgent.Tests\bin\Debug\net8.0-windows\Castle.Core.dll
 E:\Repo\analog\EnterpriseITAgent.Tests\bin\Debug\net8.0-windows\Moq.dll
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.dll
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\refint\EnterpriseITAgent.Tests.dll
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.pdb
-C:\Repo\analog\EnterpriseITAgent.Tests\bin\Debug\net8.0-windows\.msCoverageSourceRootsMapping_EnterpriseITAgent.Tests
-C:\Repo\analog\EnterpriseITAgent.Tests\bin\Debug\net8.0-windows\CoverletSourceRootsMapping_EnterpriseITAgent.Tests
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.csproj.AssemblyReference.cache
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.AssemblyInfoInputs.cache
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.AssemblyInfo.cs
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.csproj.CoreCompileInputs.cache
-C:\Repo\analog\EnterpriseITAgent.Tests\obj\Debug\net8.0-windows\EnterpriseITAgent.Tests.sourcelink.json

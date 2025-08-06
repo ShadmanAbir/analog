@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using EnterpriseITAgent.Infrastructure;
 using EnterpriseITAgent.Models;
@@ -278,7 +279,7 @@ public class LoggingServiceTests : IDisposable
     {
         // Arrange
         _mockNetworkManager
-            .Setup(x => x.TestConnectivityAsync())
+            .Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
         var config = new LoggingConfiguration
@@ -292,8 +293,8 @@ public class LoggingServiceTests : IDisposable
         await _loggingService.SendTelemetryAsync();
 
         // Assert
-        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(), Times.Once);
-        _mockNetworkManager.Verify(x => x.SecureApiCallAsync<object>(It.IsAny<string>(), It.IsAny<object>()), Times.Never);
+        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>()), Times.Once);
+        _mockNetworkManager.Verify(x => x.SecureApiCallAsync<object>(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<CancellationToken>()), Times.Never);
     }
 
     [Fact]
@@ -301,11 +302,11 @@ public class LoggingServiceTests : IDisposable
     {
         // Arrange
         _mockNetworkManager
-            .Setup(x => x.TestConnectivityAsync())
+            .Setup(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
         _mockNetworkManager
-            .Setup(x => x.SecureApiCallAsync<object>(It.IsAny<string>(), It.IsAny<object>()))
+            .Setup(x => x.SecureApiCallAsync<object>(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new object());
 
         var config = new LoggingConfiguration
@@ -323,8 +324,8 @@ public class LoggingServiceTests : IDisposable
         await _loggingService.SendTelemetryAsync();
 
         // Assert
-        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(), Times.Once);
-        _mockNetworkManager.Verify(x => x.SecureApiCallAsync<object>(It.IsAny<string>(), It.IsAny<TelemetryData>()), Times.Once);
+        _mockNetworkManager.Verify(x => x.TestConnectivityAsync(It.IsAny<CancellationToken>()), Times.Once);
+        _mockNetworkManager.Verify(x => x.SecureApiCallAsync<object>(It.IsAny<string>(), It.IsAny<TelemetryData>(), It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]

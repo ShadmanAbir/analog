@@ -88,7 +88,13 @@
 
 
 
-  - [ ] 4.1 Create secure network manager
+  - [x] 4.1 Create secure network manager
+
+
+
+
+
+
 
 
 
