@@ -30,6 +30,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IConfigurationManager, ConfigurationManager>();
         services.AddSingleton<ILoggingService, LoggingService>();
         services.AddSingleton<INetworkManager, NetworkManager>();
+        services.AddSingleton<ISystemMetricsCollector, SystemMetricsCollector>();
 
         // Register configuration
         services.AddSingleton(configuration);

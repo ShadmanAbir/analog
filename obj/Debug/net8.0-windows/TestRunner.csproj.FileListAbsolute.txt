@@ -1,0 +1,6 @@
+C:\Repo\analog\obj\Debug\net8.0-windows\TestRunner.csproj.AssemblyReference.cache
+C:\Repo\analog\obj\Debug\net8.0-windows\TestRunner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repo\analog\obj\Debug\net8.0-windows\TestRunner.AssemblyInfoInputs.cache
+C:\Repo\analog\obj\Debug\net8.0-windows\TestRunner.AssemblyInfo.cs
+C:\Repo\analog\obj\Debug\net8.0-windows\TestRunner.csproj.CoreCompileInputs.cache
+C:\Repo\analog\obj\Debug\net8.0-windows\TestRunner.sourcelink.json
