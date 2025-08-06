@@ -1,0 +1,33 @@
+{
+  "NodeId": "SHADMAN_Divine",
+  "Email": {
+    "ImapServer": "",
+    "ImapPort": 993,
+    "ImapUseSsl": true,
+    "SmtpServer": "",
+    "SmtpPort": 587,
+    "SmtpUseSsl": true,
+    "Username": "",
+    "Password": "",
+    "MaxMailboxSizeGB": 5,
+    "EnableArchiving": true
+  },
+  "Printers": null,
+  "Backup": {
+    "BackupPaths": [],
+    "MaxBackupSizeGB": 100,
+    "RetentionDays": 30,
+    "EnableDistributedBackup": true,
+    "EncryptionKey": ""
+  },
+  "Security": {
+    "EnableEncryption": true,
+    "CertificatePath": "",
+    "RequireAuthentication": true,
+    "SessionTimeoutMinutes": 60,
+    "AllowedIpRanges": []
+  },
+  "CustomSettings": {},
+  "Version": "1.0.0",
+  "LastUpdated": "2025-08-06T09:38:44.9729822Z"
+}

@@ -1,0 +1,35 @@
+{
+  "nodeId": "test-node-001",
+  "email": {
+    "imapServer": "imap.test.com",
+    "imapPort": 993,
+    "imapUseSsl": true,
+    "smtpServer": "smtp.test.com",
+    "smtpPort": 587,
+    "smtpUseSsl": true,
+    "username": "test@test.com",
+    "password": "password123",
+    "maxMailboxSizeGB": 5,
+    "enableArchiving": true
+  },
+  "printers": null,
+  "backup": {
+    "backupPaths": [
+      "C:\\TestPath"
+    ],
+    "maxBackupSizeGB": 50,
+    "retentionDays": 30,
+    "enableDistributedBackup": true,
+    "encryptionKey": "TestEncryptionKeyWith32Characters"
+  },
+  "security": {
+    "enableEncryption": true,
+    "certificatePath": "",
+    "requireAuthentication": true,
+    "sessionTimeoutMinutes": 60,
+    "allowedIpRanges": []
+  },
+  "customSettings": null,
+  "version": "1.0.0",
+  "lastUpdated": "2025-08-06T10:13:48.2134497Z"
+}
